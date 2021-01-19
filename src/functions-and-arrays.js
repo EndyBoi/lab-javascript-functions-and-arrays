@@ -16,8 +16,8 @@ function findLongestWord (words) {
   if (words.length === 0) {
     return null
   }
-  var longWord = ``
-  for (var i= 0; i < words.length; i++){
+  let longWord = ``
+  for (let i= 0; i < words.length; i++){
     if (words[i].length > longWord.length){
       longWord = words[i]
     } 
@@ -25,29 +25,44 @@ function findLongestWord (words) {
   return longWord
 }
 
-var longest = findLongestWord(words)
+let longest = findLongestWord(words)
 console.log(longest)
 
 // Iteration #3: Calculate the sum
 
 const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
-function sumNumbers (n) { 
-  var numpy = 0
-  for (var i = 0; i < n.length; i++) {
-    numpy = numpy + n[i]
+// Andyboy's code
+// function sumNum(numArray) {
+//   return numArray.reduce((sum, num) => sum + num, 0)
+// }
+
+
+// Mein Kode
+function sumNumbers (num) { 
+  let numPy = 0
+  for (let i = 0; i < num.length; i++) {
+    numPy = numPy + num[i]
   }
-  return numpy
+  return numPy
 }
 
-var tote = sumNumbers(numbers)
+let tote = sumNumbers(numbers)
 console.log(tote)
+
+
+
+
+// Iteration #3 Bonus: Calculate the sum
 
 // Iteration #4: Calculate the average
 // Level 1: Array of numbers
+
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
+
 // Level 2: Array of strings
+
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
 
 // Iteration #5: Unique arrays
@@ -107,3 +122,19 @@ const matrix = [
   [20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54],
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
+
+function product(numArray) {
+  return numArray.reduce((tot, num) => num * tot, 1)
+}
+function greatestProduct (matrix) {
+  let products = []
+  for (i = 0; i < matrix.length - 3; i++) {
+    for (y = 0; y < matrix.length - 3; y++) {
+      products.push(product(matrix.slice(y, y + 4).map(row => row[i])))
+    }
+    for (x = 0; x < matrix.length - 4; x++) {
+      products.push(product(matrix[i].slice(x, x + 4)))
+    }
+  }
+  return Math.max(...products)
+}
